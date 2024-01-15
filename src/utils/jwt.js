@@ -1,12 +1,10 @@
 import pkg_jwt from "jsonwebtoken";
 
 const {sign, verify} = pkg_jwt;
-const JWT_SECRET = process.env.JWT_SECRET || 'token2024';
+const JWT_SECRET = process.env.JWT_SECRET || 'tobi24';
 
 export const generateToken = (id) => {
-    const jwt = sign({id}, JWT_SECRET, {
-        expiresIn: '5m',
-    });
+    const jwt = sign({id}, JWT_SECRET);
     return jwt;
 };
 

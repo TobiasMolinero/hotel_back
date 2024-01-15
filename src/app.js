@@ -7,6 +7,7 @@ import cors from "cors";
 //IMPORTAMOS RUTAS
 import indexRouter from './routes/index.routes.js';
 import usuarios from './routes/usuarios.routes.js';
+import habitaciones from './routes/habitacion.routes.js';
 
 // MIDDLEWARES
 const app = express();
@@ -17,6 +18,7 @@ app.use(cors());
 
 // USAMOS LAS RUTAS
 app.use('/', indexRouter);
-app.use('/', usuarios)
+app.use('/', usuarios);
+app.use('/', habitaciones);
 
 export default app;

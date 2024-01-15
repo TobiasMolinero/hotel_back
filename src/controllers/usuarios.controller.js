@@ -3,12 +3,12 @@ import { encrypt, verified } from '../utils/encrypt.js';
 import { generateToken } from '../utils/jwt.js';
 
 export const createUser = async(req, res) => {
-    const {usuario, clave} = req.body;
+    const {usuario, clave, cod_empleado, id_tipo_usuario} = req.body;
 
     const passHash = await encrypt(clave);
 
-    pool.query(`INSERT INTO usuarios(usuario, clave)
-                VALUES('${usuario}', '${passHash}');
+    pool.query(`INSERT INTO usuario(cod_empleado, usuario, clave, id_tipo_usuario)
+                VALUES(${cod_empleado}, '${usuario}', '${passHash}', ${id_tipo_usuario});
     `, (error, results) => {
         if(error){
             res.status(400).json(
@@ -26,9 +26,8 @@ export const createUser = async(req, res) => {
 
 export const login = (req, res) => {
     const {usuario, clave} = req.body;
-
     pool.query(
-        `SELECT * FROM usuarios WHERE usuario = '${usuario}'`
+        `SELECT * FROM usuario WHERE usuario = '${usuario}'`
     ,async (error, results) => {
         if(error){
             res.status(500).json({
@@ -40,17 +39,20 @@ export const login = (req, res) => {
             const token = generateToken(user[0].usuario);
 
             if(match){
-                res.status(200).json({
+                res.json({
+                    auth: true,
                     message: 'Inicio de sesión exitoso.',
                     token
                 });
             } else {
                 res.status(401).json({
+                    auth: false,
                     message: 'Contraseña incorrecta.'
                 });
             }
         } else{
             res.status(404).json({
+                auth: false,
                 message: 'El usuario ingresado no existe.'
             });
         }
