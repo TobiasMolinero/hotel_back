@@ -4,7 +4,7 @@ const {sign, verify} = pkg_jwt;
 const JWT_SECRET = process.env.JWT_SECRET || 'tobi24';
 
 export const generateToken = (id) => {
-    const jwt = sign({id}, JWT_SECRET);
+    const jwt = sign({id}, JWT_SECRET, {expiresIn: '24h'});
     return jwt;
 };
 

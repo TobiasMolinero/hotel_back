@@ -27,7 +27,7 @@ export const createUser = async(req, res) => {
 export const login = (req, res) => {
     const {usuario, clave} = req.body;
     pool.query(
-        `SELECT * FROM usuario WHERE usuario = '${usuario}'`
+        `SELECT * FROM validarUsuario WHERE usuario = '${usuario}'`
     ,async (error, results) => {
         if(error){
             res.status(500).json({
@@ -39,9 +39,12 @@ export const login = (req, res) => {
             const token = generateToken(user[0].usuario);
 
             if(match){
+                var userData = results[0];
+                delete userData.clave;
                 res.json({
                     auth: true,
-                    message: 'Inicio de sesión exitoso.',
+                    message: 'Iniciaste sesión con exito',
+                    userData,
                     token
                 });
             } else {

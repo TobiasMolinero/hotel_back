@@ -8,6 +8,7 @@ import cors from "cors";
 import indexRouter from './routes/index.routes.js';
 import usuarios from './routes/usuarios.routes.js';
 import habitaciones from './routes/habitacion.routes.js';
+import reservas from './routes/reserva.routes.js';
 
 // MIDDLEWARES
 const app = express();
@@ -20,5 +21,6 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/', usuarios);
 app.use('/', habitaciones);
+app.use('/', reservas);
 
 export default app;

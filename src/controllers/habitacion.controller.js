@@ -29,10 +29,7 @@ export const getOne = (req, res) => {
 
 export const getTotalbyState = (req, res) => {
     pool.query('SELECT * FROM habitaciones_por_estado'
-    ,(error, results) => {
-
-
-
+    ,(error, results) => { 
         if(error) throw error;
         if(results.length === 0){
             res.status(404).send('Registro no existente.');
