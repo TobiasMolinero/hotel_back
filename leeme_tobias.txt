@@ -1,0 +1,8 @@
+Librerias para calendarios en react
+
+GitHub: https://github.com/jquense/react-big-calendar
+
+GitHub: https://github.com/airbnb/react-dates
+
+
+ACTUALIZAR LA VISTA RESERVA EN LA BASE DE DATOS DE LA COMPUTADORA LENOVO
