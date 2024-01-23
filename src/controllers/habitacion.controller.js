@@ -1,7 +1,7 @@
 import { pool } from "../db.js";
 
 export const getRooms = (req, res) => {
-    pool.query('SELECT * FROM habitaciones',
+    pool.query('SELECT * FROM habitaciones ORDER BY id_habitacion ASC',
     (error, results) => {
         if(error) throw error;
         if(results.length === 0){
