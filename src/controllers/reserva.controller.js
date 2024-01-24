@@ -5,15 +5,29 @@ export const getReservas = (req, res) => {
     (error, results) => {
         if(error){
             res.status(500).json({
-                message: 'Ocurrió un error en el servidor',
                 error
             });
         } else if(results.length === 0){
-            res.status(404).json({
-                message: 'No se encontraron resultados'
-            });
+            res.status(404);
         } else {
             res.status(200).json({
+                results
+            })
+        }
+    })
+}
+
+export const getProximasReservas = (req, res) => {
+    pool.query('SELECT * FROM reservas_proximas'
+    , (error ,results) => {
+        if(error){
+            res.json({
+                error
+            })
+        } else if(results.length === 0){
+            res.json(results);
+        } else {
+            res.json({
                 results
             })
         }

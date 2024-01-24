@@ -4,5 +4,4 @@ GitHub: https://github.com/jquense/react-big-calendar
 
 GitHub: https://github.com/airbnb/react-dates
 
-
-EN LA COMPU DE PAULA ACTUALIZAR LA VISTA RESERVAS CON EL DNI DEL CLIENTE.
+Actualizar la base de datos con la vista reservas_proximas

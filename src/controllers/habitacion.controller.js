@@ -32,7 +32,7 @@ export const getTotalbyState = (req, res) => {
     ,(error, results) => { 
         if(error) throw error;
         if(results.length === 0){
-            res.status(404).send('Registro no existente.');
+            res.status(404).json(results);
         } else {
             res.status(200).json(results);
         }
