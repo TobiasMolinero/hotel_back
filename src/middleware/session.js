@@ -10,15 +10,15 @@ export const checkToken = (req, res, next) => {
     } catch (error) {
         if(error.name === 'TokenExpiredError'){
             res.status(401).json({
-                message: 'La sesión ha expirado. Vuelva a iniciar sesión.'
+                alert: 'La sesión ha expirado. Vuelva a iniciar sesión.'
             });
         } else if(error.name === 'JsonWebTokenError'){
             res.status(401).json({
-                message: 'Token no valido.'
+                alert: 'Token no valido.'
             });
         } else {
             res.status(400).json({
-                message: 'La sesión no es valida.'
+                alert: 'La sesión no es valida.'
             })
         }        
     }
