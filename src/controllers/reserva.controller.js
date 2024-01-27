@@ -33,3 +33,18 @@ export const getProximasReservas = (req, res) => {
         }
     })
 }
+
+export const addReserva = (req, res) => {
+    let {cliente, habitacion, fecha_entrada, fecha_salida, observaciones} = req.body;
+    if(observaciones === undefined){
+        observaciones = ' - ';
+    }
+    pool.query(`INSERT INTO reserva(id_cliente, id_habitacion, fecha_entrada, fecha_salida, observacion)
+                VALUES(${cliente}, ${habitacion}, '${fecha_entrada}', '${fecha_salida}', '${observaciones}')
+    `, (error, results) => {
+        if(error) throw error;
+        res.json({
+            message: 'Nueva reserva registrada.'
+        });
+    })
+}
