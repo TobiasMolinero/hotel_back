@@ -17,6 +17,15 @@ export const getReservas = (req, res) => {
     })
 }
 
+export const getReserva = (req, res) => {
+    const id = req.params.id;
+    pool.query(`SELECT * FROM reservas WHERE nro_reserva = ${id}`
+    , (error, results) => {
+        if(error) throw error;
+        res.json(results);
+    });
+}
+
 export const getProximasReservas = (req, res) => {
     pool.query('SELECT * FROM reservas_proximas'
     , (error ,results) => {
