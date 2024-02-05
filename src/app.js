@@ -10,6 +10,7 @@ import usuarios from './routes/usuarios.routes.js';
 import habitaciones from './routes/habitacion.routes.js';
 import reservas from './routes/reserva.routes.js';
 import clientes from './routes/cliente.routes.js';
+import empleados from './routes/empleado.routes.js';
 
 // MIDDLEWARES
 const app = express();
@@ -24,5 +25,6 @@ app.use('/', usuarios);
 app.use('/', habitaciones);
 app.use('/', reservas);
 app.use('/', clientes);
+app.use('/', empleados)
 
 export default app;

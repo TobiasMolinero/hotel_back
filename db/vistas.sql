@@ -62,7 +62,18 @@ JOIN piso p
 ON h.id_piso = p.id_piso
 WHERE r.estado = 1;
 
-SELECT * FROM reservas;
+SELECT * FROM reservas ;
+
+
+SELECT * FROM reserva WHERE id_habitacion = 12 
+AND ((fecha_entrada <= '2024-02-06' AND fecha_salida >= '2024-02-10')
+OR fecha_salida BETWEEN '2024-02-06' AND '2024-02-10' 
+OR fecha_entrada BETWEEN '2024-02-06' AND '2024-02-10');
+
+
+UPDATE reserva SET fecha_salida = '2024-02-08 00:01' WHERE nro_reserva = 9;
+
+DELETE FROM reserva WHERE nro_reserva = 16;
 
 /* PROXIMAS RESERVAS */
 CREATE VIEW reservas_proximas AS
@@ -105,3 +116,13 @@ WHERE c.estado = 1;
 
 SELECT * FROM clientes;
 DELETE FROM cliente WHERE id_cliente = 4;
+
+
+/* EMPLEADOS */
+
+CREATE VIEW empleados AS
+SELECT e.cod_empleado, te.descripcion, e.dni, e.nombre, e.apellido,
+	   e.nro_telefono, e.correo_electronico FROM empleado e
+JOIN tipo_empleado te
+ON e.id_tipo_empleado = te.id_tipo_empleado
+WHERE e.estado = 1;

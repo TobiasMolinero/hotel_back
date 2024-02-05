@@ -13,7 +13,7 @@ export const createUser = async(req, res) => {
         if(error){
             res.status(400).json(
                 {
-                    message: 'No fue posible registrar el usuario, por favor intente nuevamente o comuniquese con soporte tecnico.',
+                    message: 'No fue posible registrar el usuario.',
                 }
             );
         } else {
@@ -61,3 +61,18 @@ export const login = (req, res) => {
         }
     });
 };
+
+export const getUsers = (req, res) => {
+    pool.query('SELECT id_usuario, usuario, nombre, apellido, descripcion FROM validarUsuario'
+    , (error, results) => {
+        if (error) throw error;
+        res.status(200).json(results);
+    })
+}
+
+export const getUsersType = (req, res) => {
+    pool.query('SELECT * FROM tipo_usuario', (error, results) => {
+        if(error)throw error;
+        res.json(results);
+    })
+}

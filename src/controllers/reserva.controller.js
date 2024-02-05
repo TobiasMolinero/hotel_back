@@ -45,15 +45,25 @@ export const getProximasReservas = (req, res) => {
 
 export const addReserva = (req, res) => {
     let {cliente, habitacion, fecha_entrada, fecha_salida, observaciones} = req.body;
+    const hoy = new Date();
+    const fechaEntrada = new Date(fecha_entrada);
+
+
     if(observaciones === undefined){
         observaciones = ' - ';
     }
-    pool.query(`INSERT INTO reserva(id_cliente, id_habitacion, fecha_entrada, fecha_salida, observacion)
-                VALUES(${cliente}, ${habitacion}, '${fecha_entrada}', '${fecha_salida}', '${observaciones}')
-    `, (error, results) => {
-        if(error) throw error;
+    if(fechaEntrada < hoy){
         res.json({
-            message: 'Nueva reserva registrada.'
-        });
-    })
+            message: 'La fecha de entrada tiene que ser mayor o igual a la fecha actual.'
+        })
+    } else {
+        pool.query(`INSERT INTO reserva(id_cliente, id_habitacion, fecha_entrada, fecha_salida, observacion)
+                    VALUES(${cliente}, ${habitacion}, '${fecha_entrada}', '${fecha_salida} 00:01', '${observaciones}')
+        `, (error, results) => {
+            if(error) throw error;
+            res.json({
+                message: 'Nueva reserva registrada.'
+            });
+        })
+    }
 }
