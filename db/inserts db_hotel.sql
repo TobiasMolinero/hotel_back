@@ -55,3 +55,4 @@ SELECT * FROM reserva;
 UPDATE habitacion SET id_estado_habitacion = 1 WHERE id_habitacion = 2;
 SELECT * FROM habitaciones;
 
+SELECT * FROM usuario;

@@ -11,14 +11,12 @@ export const createUser = async(req, res) => {
                 VALUES(${cod_empleado}, '${usuario}', '${passHash}', ${id_tipo_usuario});
     `, (error, results) => {
         if(error){
-            res.status(400).json(
-                {
-                    message: 'No fue posible registrar el usuario.',
-                }
-            );
+            res.status(400).json({
+                message: 'No se pudo registrar al usuario.'
+            });
         } else {
             res.status(201).json({
-                mesagge: 'Usuario registrado con exito'
+                message: 'Usuario registrado con exito.'
             });
         }
     });
@@ -63,7 +61,7 @@ export const login = (req, res) => {
 };
 
 export const getUsers = (req, res) => {
-    pool.query('SELECT id_usuario, usuario, nombre, apellido, descripcion FROM validarUsuario'
+    pool.query('SELECT id_usuario, usuario, nombre, apellido, descripcion FROM validarUsuario ORDER BY id_usuario ASC'
     , (error, results) => {
         if (error) throw error;
         res.status(200).json(results);
@@ -74,5 +72,16 @@ export const getUsersType = (req, res) => {
     pool.query('SELECT * FROM tipo_usuario', (error, results) => {
         if(error)throw error;
         res.json(results);
+    })
+}
+
+export const deleteUser = (req, res) => {
+    const id = req.params.id;
+    pool.query(`DELETE FROM usuario WHERE id_usuario = ${id}
+    `, (error, results) => {
+        if(error) throw error;
+        res.json({
+            message: 'El usuario fue dado de baja con exito.'
+        });
     })
 }
