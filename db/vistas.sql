@@ -19,11 +19,16 @@ WHERE h.estado = 1;
 SELECT * FROM habitaciones;
 
 /* TOTAL HABITACIONES POR ESTADO */
-CREATE VIEW habitaciones_por_estado AS
-SELECT  count(estado_habitacion) as 'cant', estado_habitacion FROM habitaciones
-GROUP BY estado_habitacion;
+DROP VIEW cantidad_por_estado;
+CREATE VIEW cantidad_por_estado AS
+SELECT h.id_estado_habitacion, count(h.id_estado_habitacion) as 'cant' FROM habitacion h
+JOIN estado_habitacion eh
+ON h.id_estado_habitacion = eh.id_estado_habitacion
+WHERE h.estado = 1
+GROUP BY eh.id_estado_habitacion;
 
-SELECT * FROM habitaciones_por_estado;
+
+SELECT * FROM cantidad_por_estado WHERE id_estado_habitacion = 4;
 
 /* USUARIOS */
 CREATE VIEW validarUsuario AS 
@@ -62,7 +67,7 @@ JOIN piso p
 ON h.id_piso = p.id_piso
 WHERE r.estado = 1;
 
-SELECT * FROM reservas ;
+SELECT * FROM reservas;
 
 
 SELECT * FROM reserva WHERE id_habitacion = 12 
@@ -115,7 +120,6 @@ ON c.id_tipo_documento = td.id_tipo_documento
 WHERE c.estado = 1;
 
 SELECT * FROM clientes;
-DELETE FROM cliente WHERE id_cliente = 4;
 
 
 /* EMPLEADOS */

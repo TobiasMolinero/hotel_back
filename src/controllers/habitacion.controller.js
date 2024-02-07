@@ -28,13 +28,19 @@ export const getOne = (req, res) => {
 };
 
 export const getTotalbyState = (req, res) => {
-    pool.query('SELECT * FROM habitaciones_por_estado'
+    const idEstado = req.params.id;
+    pool.query(`SELECT * FROM cantidad_por_estado WHERE id_estado_habitacion = ${idEstado}`
     ,(error, results) => { 
         if(error) throw error;
         if(results.length === 0){
-            res.status(404).json(results);
+            res.json({
+                cant: 0
+            });
         } else {
-            res.status(200).json(results);
+            res.json({
+                cant: results[0].cant
+            });
         }
     })
 }
+

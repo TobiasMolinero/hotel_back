@@ -18,7 +18,7 @@ VALUES(101, 1, 1, 1),(102, 1, 1, 1),(103, 1, 1, 1),(104, 1, 1, 2),(105, 1, 1, 2)
 (207, 1, 2, 1),(208, 1, 2, 1),(209, 1, 2, 1),(210, 1, 2, 2),(211, 1, 2, 2),(212, 1, 2, 2),
 (313, 1, 3, 3),(314, 1, 3, 3),(315, 1, 3, 3),(316, 1, 3, 3);
 
-UPDATE habitacion SET id_estado_habitacion = 1 WHERE id_habitacion = 14;
+UPDATE habitacion SET id_estado_habitacion = 4 WHERE id_habitacion = 12;
 SELECT * FROM habitaciones
 ORDER BY id_habitacion ASC;
 

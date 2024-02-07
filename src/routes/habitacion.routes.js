@@ -5,7 +5,7 @@ import { checkToken } from "../middleware/session.js";
 const router = Router();
 
 router.get('/habitaciones', checkToken, getRooms);
-router.get('/habitaciones/one/:id', checkToken,getOne);
-router.get('/habitaciones/totales', checkToken, getTotalbyState);
+router.get('/habitaciones/one/:id', checkToken, getOne);
+router.get('/habitaciones/total/:id', checkToken, getTotalbyState);
 
 export default router;
