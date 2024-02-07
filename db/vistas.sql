@@ -31,15 +31,16 @@ GROUP BY eh.id_estado_habitacion;
 SELECT * FROM cantidad_por_estado WHERE id_estado_habitacion = 4;
 
 /* USUARIOS */
+DROP VIEW validarUsuario;
 CREATE VIEW validarUsuario AS 
-SELECT u.id_usuario, u.usuario, u.clave, e.nombre, e.apellido, tu.descripcion FROM usuario u
+SELECT u.id_usuario, u.usuario, u.clave,u.cod_empleado, e.nombre, e.apellido, u.id_tipo_usuario, tu.descripcion FROM usuario u
 JOIN empleado e
 ON u.cod_empleado = e.cod_empleado
 JOIN tipo_usuario tu
 ON u.id_tipo_usuario = tu.id_tipo_usuario
 WHERE u.estado = 1;
 
-SELECT id_usuario, usuario, nombre, apellido, descripcion FROM validarUsuario;
+SELECT * FROM validarUsuario;
 
 /* RESERVAS */
 DROP VIEW reservas;

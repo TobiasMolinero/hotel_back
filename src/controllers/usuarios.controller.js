@@ -75,6 +75,32 @@ export const getUsersType = (req, res) => {
     })
 }
 
+export const oneUser = (req, res) => {
+    const id = req.params.id;
+    pool.query(`SELECT id_usuario, usuario, cod_empleado, id_tipo_usuario FROM usuario
+                WHERE id_usuario = ${id}
+    `, (error, results) => {
+        if(error) throw error;
+        res.json(results);
+    })
+}
+
+export const editUser = (req, res) => {
+    const id = req.params.id;
+    const {usuario, empleado, tipo_usuario} = req.body;
+    pool.query(`UPDATE usuario SET 
+                usuario = '${usuario}',
+                cod_empleado = ${empleado},
+                id_tipo_usuario = ${tipo_usuario}
+                WHERE id_usuario = ${id}
+    `, (error, results) => {
+        if(error) throw error;
+        res.json({
+            message: 'Los datos del usuario se modificarion correctamente.'
+        })
+    })
+}
+
 export const deleteUser = (req, res) => {
     const id = req.params.id;
     pool.query(`DELETE FROM usuario WHERE id_usuario = ${id}
