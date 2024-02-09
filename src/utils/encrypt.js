@@ -1,4 +1,4 @@
-import { hash, compare } from 'bcrypt';
+import { hash, compare, } from 'bcrypt';
 
 // Crear el hash para la contraseña.
 export const encrypt = async(pass) => {

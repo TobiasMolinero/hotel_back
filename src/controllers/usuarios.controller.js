@@ -77,10 +77,11 @@ export const getUsersType = (req, res) => {
 
 export const oneUser = (req, res) => {
     const id = req.params.id;
-    pool.query(`SELECT id_usuario, usuario, cod_empleado, id_tipo_usuario FROM usuario
+    pool.query(`SELECT id_usuario, usuario, clave,cod_empleado, id_tipo_usuario FROM usuario
                 WHERE id_usuario = ${id}
     `, (error, results) => {
         if(error) throw error;
+        
         res.json(results);
     })
 }
@@ -98,6 +99,20 @@ export const editUser = (req, res) => {
         res.json({
             message: 'Los datos del usuario se modificarion correctamente.'
         })
+    })
+}
+
+export const editPassword = async(req, res) => {
+    const id = req.params.id;
+    const {nuevaClave} = req.body;
+    const passHash = await encrypt(nuevaClave);
+    pool.query(`UPDATE usuario SET clave = '${passHash}'
+                WHERE id_usuario = ${id}
+    ` ,(error, results) => {
+        if(error) throw error;
+        res.json({
+            message: 'La contraseña se modificó con exito.'
+        });
     })
 }
 

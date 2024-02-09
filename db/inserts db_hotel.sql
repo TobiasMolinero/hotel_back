@@ -52,6 +52,8 @@ INSERT INTO reserva(id_cliente, id_habitacion, fecha_entrada, fecha_salida, obse
 VALUES(2, 2, '2024-01-17', '2024-01-24', '');
 SELECT * FROM reserva;
 
+DELETE FROM reserva WHERE nro_reserva = 16;
+
 UPDATE habitacion SET id_estado_habitacion = 1 WHERE id_habitacion = 2;
 SELECT * FROM habitaciones;
 

@@ -34,7 +34,7 @@ export const getProximasReservas = (req, res) => {
         error,
       });
     } else if (results.length === 0) {
-      res.json(results);
+      res.json({results});
     } else {
       res.json({
         results,
@@ -51,7 +51,7 @@ export const addReserva = (req, res) => {
   }
   pool.query(
     `INSERT INTO reserva(id_cliente, id_habitacion, fecha_entrada, fecha_salida, observacion)
-                    VALUES(${cliente}, ${habitacion}, '${fecha_entrada}', '${fecha_salida} 00:01', '${observaciones}')
+                    VALUES(${cliente}, ${habitacion}, '${fecha_entrada}', '${fecha_salida}', '${observaciones}')
         `,
     (error, results) => {
       if (error) throw error;

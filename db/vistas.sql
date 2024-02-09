@@ -27,8 +27,7 @@ ON h.id_estado_habitacion = eh.id_estado_habitacion
 WHERE h.estado = 1
 GROUP BY eh.id_estado_habitacion;
 
-
-SELECT * FROM cantidad_por_estado WHERE id_estado_habitacion = 4;
+SELECT * FROM cantidad_por_estado;
 
 /* USUARIOS */
 DROP VIEW validarUsuario;
@@ -76,10 +75,6 @@ AND ((fecha_entrada <= '2024-02-06' AND fecha_salida >= '2024-02-10')
 OR fecha_salida BETWEEN '2024-02-06' AND '2024-02-10' 
 OR fecha_entrada BETWEEN '2024-02-06' AND '2024-02-10');
 
-
-UPDATE reserva SET fecha_salida = '2024-02-08 00:01' WHERE nro_reserva = 9;
-
-DELETE FROM reserva WHERE nro_reserva = 16;
 
 /* PROXIMAS RESERVAS */
 CREATE VIEW reservas_proximas AS
@@ -131,3 +126,5 @@ SELECT e.cod_empleado, te.descripcion, e.dni, e.nombre, e.apellido,
 JOIN tipo_empleado te
 ON e.id_tipo_empleado = te.id_tipo_empleado
 WHERE e.estado = 1;
+
+
