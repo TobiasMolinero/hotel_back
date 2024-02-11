@@ -22,7 +22,13 @@ export const getReserva = (req, res) => {
     `SELECT * FROM reservas WHERE nro_reserva = ${id}`,
     (error, results) => {
       if (error) throw error;
-      res.json(results);
+      let resultado = results[0];
+      let diasReserva = calcularDias(results[0].fecha_salida, results[0].fecha_entrada);
+      resultado = {
+        ...resultado,
+        dias_reserva: diasReserva 
+      }
+      res.json([resultado]);
     }
   );
 };
@@ -61,3 +67,12 @@ export const addReserva = (req, res) => {
     }
   );
 };
+
+const calcularDias = (salida, entrada) => {
+  let fechaS = new Date(salida);
+  let fechaE = new Date(entrada);
+  let difEnMilisegundos = fechaS.getTime() - fechaE.getTime();
+  let difEnDias = difEnMilisegundos / (1000 * 3600 * 24);
+  difEnDias < 1 ? difEnDias = 1 : difEnDias = Math.floor(difEnDias);
+  return difEnDias;
+}
