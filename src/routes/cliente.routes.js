@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { addCliente, getClientes, getTiposDocumento, deleteCliente, oneCliente, editCliente } from "../controllers/cliente.controller.js";
 import { checkToken } from "../middleware/session.js";
-import { validarCliente } from "../middleware/validarCliente.js";
+import { validarCliente } from "../middleware/validaciones.js";
 
 const router = Router();
 

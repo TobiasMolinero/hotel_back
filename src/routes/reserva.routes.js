@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { getProximasReservas, getReservas, addReserva, getReserva } from '../controllers/reserva.controller.js';
 import { checkToken } from "../middleware/session.js";
-import { validarReserva } from '../middleware/validarReserva.js';
+import { validarReserva } from '../middleware/validaciones.js';
 import { changeStateToReserved } from "../middleware/changeState.js";
 
 const router = Router();
